@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Core logic
 
+    // Factors the expression given
     @IBAction func factor(_ sender: Any) {
         
         let intA = Int(a.intValue)
@@ -43,12 +44,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("b is: \(intB)")
         print("c is: \(intC)")
         
-        // Find factors of the final term
+        // Factor the expression
         print("factors of c are:")
-        if let factors = getFactors(for: intC) {
+        var output = ""
+        if intC != 0 {
+            
+            // Get factors
+            guard let factors = getFactors(for: intC) else {
+                print("\(intC) has no factors!")
+                return
+            }
             print(factors)
+            
+            // Consider the factors in order
+            for factor in factors {
+                
+                // Get the quotient for this factor
+                let quotient = intC / factor
+                
+                // Do this factor (divisor) and the quotient have a sum equal to "b"?
+                // If so, the expression is factored
+                if quotient + factor == intB {
+                    
+                    // Assemble string with the factored form
+                    output = formatOutput(m: quotient, n: factor)
+                    
+                    break
+                }
+                
+            }
+
         } else {
-            print("\(intC) has no factors!")
+            
+            // Handles case where final term is 0
+            output = formatOutput(m: 0, n: intB)
+        }
+        
+        // Update the view
+        if output == "" {
+            result.stringValue = "not possible"
+        } else {
+            result.stringValue = output
         }
         
         // Set focus to the button
@@ -58,17 +94,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.window.makeFirstResponder(button)
             
             // Set the textfields so the sign is visible
-            if intB > 0 {
+            if intB >= 0 {
                 b.stringValue = "+" + String(intB)
+            } else {
+                b.stringValue = String(intB)
             }
-            if intC > 0 {
+            if intC >= 0 {
                 c.stringValue = "+" + String(intC)
+            } else {
+                c.stringValue = String(intC)
             }
 
         }
         
     }
     
+    // Get the list of factors for a given coefficient
     func getFactors(for coefficient : Int) -> [Int]? {
         
         // Create an array to store factors in
@@ -113,6 +154,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Return the list of factors
         return factors
         
+    }
+    
+    // Produce the factored form as a string
+    func formatOutput(m : Int, n : Int) -> String {
+        
+        var formattedOutput = ""
+        
+        formattedOutput = "(x "
+        if m >= 0 {
+            formattedOutput += "+ "
+        } else {
+            formattedOutput += "- "
+        }
+        formattedOutput += String(abs(m)) + ")(x "
+        if n >= 0 {
+            formattedOutput += "+ "
+        } else {
+            formattedOutput += "- "
+        }
+        formattedOutput += String(abs(n)) + ")"
+        
+        return formattedOutput
     }
     
 
