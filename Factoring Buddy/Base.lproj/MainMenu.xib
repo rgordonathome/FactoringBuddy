@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -17,6 +17,7 @@
             <connections>
                 <outlet property="a" destination="b06-1M-8dT" id="25u-2g-H8p"/>
                 <outlet property="b" destination="Lpz-dY-uXb" id="tQN-em-v1E"/>
+                <outlet property="button" destination="TJ8-mQ-8eB" id="PoD-nT-RLU"/>
                 <outlet property="c" destination="W00-z7-Q1o" id="NyR-RU-E76"/>
                 <outlet property="result" destination="t6h-Tc-pcg" id="cOJ-6H-2gu"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
